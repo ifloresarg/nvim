@@ -15,7 +15,13 @@ return {
       "folke/snacks.nvim",
     },
     config = function()
-      require("opencode").setup({})
+      require("opencode").setup({
+        keymap = {
+          editor = {
+            ["<leader>oa"] = { "select_agent", desc = "Select agent" },
+          },
+        },
+      })
     end,
   },
 }
