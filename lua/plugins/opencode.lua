@@ -16,11 +16,19 @@ return {
     },
     config = function()
       require("opencode").setup({
+        default_mode = "prometheus",
         keymap = {
           editor = {
             ["<leader>oa"] = { "select_agent", desc = "Select agent" },
           },
         },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "opencode",
+        callback = function()
+          vim.opt_local.textwidth = 80
+        end,
       })
     end,
   },
