@@ -6,6 +6,7 @@ return {
       {
         "MeanderingProgrammer/render-markdown.nvim",
         opts = {
+          enabled = false,
           anti_conceal = { enabled = false },
           file_types = { "markdown", "opencode_output" },
         },
@@ -16,7 +17,7 @@ return {
     },
     config = function()
       require("opencode").setup({
-        default_mode = "prometheus",
+        default_mode = "Prometheus (Plan Builder)",
         keymap = {
           editor = {
             ["<leader>oa"] = { "select_agent", desc = "Select agent" },
