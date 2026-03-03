@@ -17,7 +17,6 @@ return {
     },
     config = function()
       require("opencode").setup({
-        default_mode = "Prometheus (Plan Builder)",
         keymap = {
           editor = {
             ["<leader>oa"] = { "select_agent", desc = "Select agent" },
