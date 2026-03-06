@@ -128,9 +128,6 @@ return {
           auto_show = false,
         },
       },
-      keymap = {
-        ["<A-Space>"] = { "show", "hide" },
-      },
     },
   },
 }
