@@ -119,14 +119,17 @@ return {
     opts = {
       completion = {
         trigger = {
-          show_on_keyword = false,
-          show_on_trigger_character = false,
-          show_on_insert_on_trigger_character = false,
-          show_on_accept_on_trigger_character = false,
+          show_on_keyword = false, -- no popup while typing words
+          show_on_trigger_character = true, -- popup on ".", "/", etc.
+          show_on_insert_on_trigger_character = true, -- popup when entering insert after "."
+          show_on_accept_on_trigger_character = true, -- chain completions after accepting
         },
         menu = {
-          auto_show = false,
+          auto_show = true,
         },
+      },
+      keymap = {
+        ["<A-Space>"] = { "show", "hide" },
       },
     },
   },
