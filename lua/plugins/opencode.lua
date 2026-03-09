@@ -17,6 +17,9 @@ return {
     },
     config = function()
       require("opencode").setup({
+        ui = {
+          window_width = 0.42,
+        },
         keymap = {
           editor = {
             ["<leader>oa"] = { "select_agent", desc = "Select agent" },
@@ -27,7 +30,7 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "opencode",
         callback = function()
-          vim.opt_local.textwidth = 80
+          vim.opt_local.textwidth = 90
           vim.opt_local.formatoptions:append("t")
         end,
       })
