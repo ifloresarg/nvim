@@ -1,12 +1,12 @@
 # Neovim Configuration Knowledge Base
 
-**Generated:** 2026-02-26
-**Commit:** 75b59bc
+**Generated:** 2026-03-14
+**Commit:** ba4654b
 **Branch:** main
 
 ## Overview
 
-LazyVim-based Neovim configuration using lazy.nvim plugin manager. Lua only, ~440 lines across 10 source files.
+LazyVim-based Neovim configuration using lazy.nvim plugin manager. Lua only, ~550 lines across 13 source files.
 
 ## Structure
 
@@ -20,10 +20,14 @@ LazyVim-based Neovim configuration using lazy.nvim plugin manager. Lua only, ~44
 │   │   ├── keymaps.lua         # Global keymaps (loaded on VeryLazy) — currently empty
 │   │   └── autocmds.lua        # Autocommands (loaded on VeryLazy) — currently empty
 │   └── plugins/
-│       ├── overrides.lua       # Overrides for LazyVim defaults (LSP, colorscheme)
+│       ├── overrides.lua       # Overrides: LSP, colorscheme, snacks picker, blink.cmp, dashboard
 │       ├── multicursor.lua     # jake-stewart/multicursor.nvim config + keymaps
 │       ├── opencode.lua        # opencode.nvim with render-markdown, blink.cmp, snacks deps
 │       ├── dap.lua             # DAP configs for NestJS/TypeScript debugging (pwa-node)
+│       ├── biome.lua           # Replaces "biome" with "biome-check" in conform.nvim for JS/TS/CSS/JSON
+│       ├── undotree.lua        # jiaoshijie/undotree — <leader>U toggle
+│       ├── surround.lua        # kylechui/nvim-surround v4 — VeryLazy loaded
+│       ├── colorizer.lua       # norcalli/nvim-colorizer — inline color previews (background mode)
 │       └── example.lua         # Template file — short-circuited with `if true then return {} end`
 ├── lazyvim.json                # Enabled LazyVim extras
 ├── stylua.toml                 # Formatter config
@@ -42,6 +46,8 @@ LazyVim-based Neovim configuration using lazy.nvim plugin manager. Lua only, ~44
 | Enable LazyVim extra | `lazyvim.json` | `extras` array |
 | Change colorscheme | `lua/plugins/overrides.lua` | tokyonight-storm is active |
 | DAP/debugger config | `lua/plugins/dap.lua` | NestJS-specific, uses mason js-debug-adapter |
+| Biome formatter behavior | `lua/plugins/biome.lua` | Swaps "biome" → "biome-check" in conform.nvim |
+| Completion trigger behavior | `lua/plugins/overrides.lua` | blink.cmp — no popup on keyword typing, Alt+Space toggle |
 
 ## Init Order
 
@@ -56,7 +62,9 @@ LazyVim-based Neovim configuration using lazy.nvim plugin manager. Lua only, ~44
 
 - `ai.copilot` — GitHub Copilot
 - `dap.core` — Debug adapter protocol
+- `editor.dial` — Increment/decrement numbers, dates, etc.
 - `formatting.biome` — Biome formatter
+- `lang.git` — Git language support (commit messages, etc.)
 - `lang.json` — JSON language support
 - `lang.markdown` — Markdown support
 - `lang.toml` — TOML support
@@ -72,6 +80,9 @@ LazyVim-based Neovim configuration using lazy.nvim plugin manager. Lua only, ~44
 - **Plugin overrides**: Re-declare plugin spec with `opts` to merge — use `overrides.lua` for LazyVim defaults
 - **Animations disabled**: `vim.g.snacks_animate = false`, `vim.g.snacks_scroll = false`
 - **Inlay hints disabled**: via nvim-lspconfig override
+- **Signature help**: auto-trigger disabled, manual via `<C-k>` in insert mode
+- **Completion**: blink.cmp configured to not show on keyword — only on trigger chars (`.`, `/`) or `<A-Space>`
+- **Snacks picker**: `H` key toggles hidden+ignored files in explorer, files, and grep pickers
 
 ## Anti-Patterns
 
@@ -93,6 +104,7 @@ cat lazy-lock.json | jq .
 
 - DAP config in `dap.lua` is project-specific to "tad-api" (NestJS) — uses `pnpm run start:debug` and port 9229
 - `opencode.nvim` plugin (`sudo-tee/opencode.nvim`) pulls in render-markdown, blink.cmp, snacks as dependencies
-- Colorscheme: tokyonight with `storm` style
+- Colorscheme: tokyonight with `storm` style, custom ASCII dashboard header
 - Plugin update checker runs silently (`notify = false`)
 - Some rtp plugins disabled for performance: gzip, tarPlugin, tohtml, tutor, zipPlugin
+- `biome.lua` patches conform.nvim to use `biome-check` (lint+format) instead of `biome` (format-only), with `require_cwd = true`
