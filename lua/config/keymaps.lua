@@ -18,3 +18,26 @@ vim.keymap.set("n", "<leader>md", function()
   vim.cmd("delmarks A-Z0-9")
   vim.notify("All marks deleted")
 end, { desc = "Delete all marks" })
+
+vim.keymap.set("n", "<leader>mc", function()
+  local current_line = vim.fn.line(".")
+  local marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+  local found_mark = nil
+
+  for i = 1, #marks do
+    local mark = marks:sub(i, i)
+    local mark_pos = vim.fn.getpos("'" .. mark)
+    -- mark_pos[2] is the line number (0 if mark doesn't exist)
+    if mark_pos[2] == current_line then
+      found_mark = mark
+      break
+    end
+  end
+
+  if found_mark then
+    vim.cmd("delmarks " .. found_mark)
+    vim.notify("Deleted mark '" .. found_mark .. "'")
+  else
+    vim.notify("No mark found on current line", vim.log.levels.WARN)
+  end
+end, { desc = "Delete mark on current line" })
