@@ -29,6 +29,7 @@ return {
         keymap = {
           editor = {
             ["<leader>oa"] = { "select_agent", desc = "Select agent" },
+            ["<leader>om"] = { "mcp", desc = "MCP menu" },
           },
         },
       })
