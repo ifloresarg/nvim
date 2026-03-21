@@ -17,6 +17,7 @@ return {
     },
     config = function()
       require("opencode").setup({
+        default_mode = "plan",
         ui = {
           window_width = 0.42,
           output = {
