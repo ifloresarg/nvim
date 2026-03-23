@@ -36,6 +36,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("opencode_filetype", { clear = true }),
         pattern = "opencode",
         callback = function()
           vim.opt_local.textwidth = 90

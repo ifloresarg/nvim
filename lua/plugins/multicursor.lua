@@ -21,7 +21,7 @@ return {
       mc.matchSkipCursor(1)
     end, { desc = "Skip match and find next" })
 
-    -- Vertical hola addition
+    -- Vertical cursor addition
     set({ "n", "x" }, "<C-j>", function()
       mc.lineAddCursor(1)
     end, { desc = "Add cursor below" })

@@ -1,3 +1,10 @@
+local function toggle_all(picker)
+  local new_state = not picker.opts.hidden
+  picker.opts.hidden = new_state
+  picker.opts.ignored = new_state
+  picker:find()
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -6,6 +13,7 @@ return {
     },
     init = function()
       vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("lazyvim_lsp_signature", { clear = true }),
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if client and client.server_capabilities.signatureHelpProvider then
@@ -68,12 +76,7 @@ return {
               },
             },
             actions = {
-              toggle_all = function(picker)
-                local new_state = not picker.opts.hidden
-                picker.opts.hidden = new_state
-                picker.opts.ignored = new_state
-                picker:find()
-              end,
+              toggle_all = toggle_all,
             },
           },
           files = {
@@ -85,12 +88,7 @@ return {
               },
             },
             actions = {
-              toggle_all = function(picker)
-                local new_state = not picker.opts.hidden
-                picker.opts.hidden = new_state
-                picker.opts.ignored = new_state
-                picker:find()
-              end,
+              toggle_all = toggle_all,
             },
           },
           grep = {
@@ -102,12 +100,7 @@ return {
               },
             },
             actions = {
-              toggle_all = function(picker)
-                local new_state = not picker.opts.hidden
-                picker.opts.hidden = new_state
-                picker.opts.ignored = new_state
-                picker:find()
-              end,
+              toggle_all = toggle_all,
             },
           },
         },
