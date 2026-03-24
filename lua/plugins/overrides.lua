@@ -126,4 +126,12 @@ return {
       },
     },
   },
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        style_preset = require("bufferline").style_preset.minimal,
+      },
+    },
+  },
 }
