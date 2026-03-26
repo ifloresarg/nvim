@@ -4,7 +4,7 @@ return {
     require("gh-projects").setup({
       binary = "gh projects",
       width = 0.9,
-      height = 0.9,
+      height = 0.95,
       border = "rounded",
     })
   end,
