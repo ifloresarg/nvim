@@ -65,46 +65,6 @@ return {
           ]],
         },
       },
-      picker = {
-        sources = {
-          explorer = {
-            win = {
-              list = {
-                keys = {
-                  ["H"] = "toggle_all",
-                },
-              },
-            },
-            actions = {
-              toggle_all = toggle_all,
-            },
-          },
-          files = {
-            win = {
-              list = {
-                keys = {
-                  ["H"] = "toggle_all",
-                },
-              },
-            },
-            actions = {
-              toggle_all = toggle_all,
-            },
-          },
-          grep = {
-            win = {
-              list = {
-                keys = {
-                  ["H"] = "toggle_all",
-                },
-              },
-            },
-            actions = {
-              toggle_all = toggle_all,
-            },
-          },
-        },
-      },
     },
   },
   {
