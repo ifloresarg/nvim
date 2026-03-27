@@ -25,6 +25,9 @@ return {
               event_throttle_ms = 150, -- Default: 40ms. Triple it.
               markdown_debounce_ms = 1000, -- Default: 250ms. Render markdown less often.
             },
+            tools = {
+              show_reasoning_output = false,
+            },
           },
         },
         keymap = {
