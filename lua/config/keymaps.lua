@@ -41,3 +41,23 @@ vim.keymap.set("n", "<leader>mc", function()
     vim.notify("No mark found on current line", vim.log.levels.WARN)
   end
 end, { desc = "Delete mark on current line" })
+
+vim.keymap.set("n", "<leader>fS", function()
+  local current_dir = vim.fn.expand("%:p:h")
+  vim.ui.input({ prompt = "Save as: ", default = current_dir .. "/" }, function(input)
+    if input and input ~= "" then
+      vim.cmd("saveas " .. input)
+    end
+  end)
+end, { desc = "Save As" })
+
+vim.keymap.set("n", "<leader>fN", function()
+  local cwd = vim.fn.getcwd()
+  vim.ui.input({ prompt = "New file: ", default = cwd .. "/" }, function(input)
+    if input and input ~= "" then
+      local parent_dir = vim.fn.fnamemodify(input, ":p:h")
+      vim.fn.mkdir(parent_dir, "p")
+      vim.cmd("edit " .. input)
+    end
+  end)
+end, { desc = "New File at path" })
