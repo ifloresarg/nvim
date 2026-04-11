@@ -19,10 +19,10 @@ return {
       require("opencode").setup({
         default_mode = "plan",
         ui = {
-          window_width = 0.42,
+          window_width = 0.5,
           output = {
             rendering = {
-              event_throttle_ms = 150, -- Default: 40ms. Triple it.
+              event_throttle_ms = 200, -- Default: 40ms. Triple it.
               markdown_debounce_ms = 1000, -- Default: 250ms. Render markdown less often.
             },
             tools = {
@@ -42,7 +42,7 @@ return {
         group = vim.api.nvim_create_augroup("opencode_filetype", { clear = true }),
         pattern = "opencode",
         callback = function()
-          vim.opt_local.textwidth = 90
+          vim.opt_local.textwidth = 100
           vim.opt_local.formatoptions:append("t")
         end,
       })
