@@ -26,7 +26,7 @@ return {
               markdown_debounce_ms = 1000, -- Default: 250ms. Render markdown less often.
             },
             tools = {
-              show_output = false,
+              show_output = true,
               show_reasoning_output = false,
             },
           },
